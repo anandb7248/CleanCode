@@ -7,6 +7,7 @@ Table of contents
 <!--ts-->
    * [Chapter 1: Clean Code](#chapter-1-clean-code)
    * [Chapter 2: Meaningful Names](#chapter-2-meaningful-names)
+   * [Chapter 3: Functions](#chapter-3-functions)
 <!--te-->
 
  - ### Chapter 1: Clean Code
@@ -37,3 +38,38 @@ Table of contents
 	 - Pick One Word per Concept
 		 - It's confusing to have ***fetch, retrieve, and get*** as equivalent methods of different classes.
 		 - Likewise, it's confusing to have a ***controller, manager, and a driver*** in the same codebase.
+ - ### Chapter 3: Functions
+	 - Functions should:
+		 1. Be **small**.
+			 - *Functions should hardly ever be 20 lines long.*
+			 - Blocks and Indenting
+				 - Blocks within *if* statements, *else* statements, *while* statement, and so on should be one line long. Probably that line should be a function call. Not only does this keep the enclosing function small, but it also adds documentary value because the function called within the block can have a nice descriptive name. 
+				 - This implies that functions should not be large enough to hold nested structures. Therefore, the indent level of a function should not be greater than one or two.
+		 2. **Do one thing and do it well**
+			 - Functions should either do something or answer something, but not both. Either your function should change the state of an object, or it should return some information about that object. 
+			 - There should be no side effects. Meaning it should not be doing unexpected, hidden things. 
+		 3. Have one level of abstraction per function
+		 4. Follow the Top to Bottom, *Stepdown Rule*
+			 - We want every function to be followed by those at the next level of abstraction so that we can read the program, descending one level of abstraction at a time as we read down the list of functions.
+	 - Function Arguments
+		 - The ideal number of arguments for a function is zero (niladic). Next comes one (monadic), followed closely by two (dyadic). Three arguments (triadic) should be avoided where possible. More than three (polyadic) requires very special justification - and then shouldn't be used anyway ... Greater number of arguments are even harder from a testing point of view. 
+		 - Common Monadic Forms
+			 - You may be asking a question about that argument, as in boolean fileExists("MyFile")
+			 - You may be operating on that argument, transforming it into something else and returning it.
+			 - You may be processing an *event*, there is an input argument but no output argument. The function call should use the argument to alter the state of the system.
+			 - ***Avoid Flag Arguments, passing a boolean into a function is a truly terrible practice.***
+		 - Dyadic Functions
+			 - A function with two arguments is harder to understand than a monadic function. Even obvious dyadic functions like *assertEquals(expected, actual)* are problematic. The expected, actual ordering is a convention that requires practice to learn.
+			 - There are times where two arguments are appropriate. For example, *Point p = new Point(0,0);* However, two arguments in this case are *ordered components of a single value.*
+			 - Take advantage of what mechanisms may be available to you to convert them into monads.
+		 - Triadic Functions
+			 - Functions that take three arguments are significantly harder to understand than dyads. The issues of ordering, pausing, and ignoring are more than doubled. I suggest you think very carefully before creating a triad.
+		 - Argument Objects
+			 - *When a function seems to need more than 2 or 3 arguments, it is likely that some of those arguments ought to be wrapped into a class of their own.* Reducing the number of arguments by creating objects out of them may seem like cheating, but it's not. When groups of variables are passed together they are likely part of a concept that deserves a name of its own.
+		 - Output Arguments
+			 - Much of the need for output arguments disappears in OO languages because *this* is intended to act as an output argument. **In general, output arguments should be avoided.** If your function must change the state of something, have it change the state of its owning object.
+ - Error Checking
+	 - Prefer exceptions to returning error codes.
+		 - If you use exceptions instead of returned error codes, then the error processing code can be separated from the happy path code and can be simplified.
+	 - Extract Try/Catch Blocks into functions of their own.
+		 - Try/catch blocks are ugly in their own right. They confuse the structure of the code and mix error processing with normal processing.
