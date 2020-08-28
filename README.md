@@ -8,6 +8,7 @@ Table of contents
    * [Chapter 1: Clean Code](#chapter-1-clean-code)
    * [Chapter 2: Meaningful Names](#chapter-2-meaningful-names)
    * [Chapter 3: Functions](#chapter-3-functions)
+   * [Chapter 4: Comments](#chapter-4-comments)
 <!--te-->
 
  - ### Chapter 1: Clean Code
@@ -73,3 +74,25 @@ Table of contents
 		 - If you use exceptions instead of returned error codes, then the error processing code can be separated from the happy path code and can be simplified.
 	 - Extract Try/Catch Blocks into functions of their own.
 		 - Try/catch blocks are ugly in their own right. They confuse the structure of the code and mix error processing with normal processing.
+ - ### Chapter 4: Comments
+	 - You should write code so clearly and expressively that it does not need comments in the first place.
+		 - The proper use of comments is to compensate for our failure to express ourself in code. ***Comments are always failures in code.***
+	 - The older a comment is, and the farther away it is from the code it describes, the more likely it is to be just plain wrong. The reason is simple. Programmers can't realistically maintain them. Code changes over time, comments don't always follow them - *can't* always follow them. 
+	 - **Good Comments**
+		 - Legal Comments
+			 - For example, copyright and authorship statements are necessary and reasonable things to put into a comment at the start of each source file.
+		 - Explanation of intent behind a coding decision
+		 - Warning of Consequences
+		 - TODO Comments
+		 - Amplification
+			 - A comment may be used to amplify the importance of something that may otherwise seem inconsequential.
+	 - **Bad Comments**
+		 - Redundant comments along code that speaks for itself
+		 - Misleading Comments
+			 - A programmer makes a statement in his comments that isn't precise enough to be accurate. 
+		 - Mandated Comments
+			 - It is just plain silly to have a rule that says that every function must have a javadoc, or every variable must have a comment. This just clutters up the code and leads to confusion and disorganization.
+		 - Attributions and Bylines
+			 - Source code control systems are very good at remembering who added what, when. There is no need to pollute the code with little bylines.
+		 - Commented-Out Code
+			 - Others who see that commented-out code won't have the courage to delete it. They'll think it is there for a reason and is too important to delete. So commented-out code gathers like dregs at the bottom of a bad bottle of wine.
