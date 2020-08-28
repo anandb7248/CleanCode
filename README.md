@@ -9,6 +9,7 @@ Table of contents
    * [Chapter 2: Meaningful Names](#chapter-2-meaningful-names)
    * [Chapter 3: Functions](#chapter-3-functions)
    * [Chapter 4: Comments](#chapter-4-comments)
+   * [Chapter 5: Formatting](#chapter-5-formatting)
 <!--te-->
 
  - ### Chapter 1: Clean Code
@@ -96,3 +97,28 @@ Table of contents
 			 - Source code control systems are very good at remembering who added what, when. There is no need to pollute the code with little bylines.
 		 - Commented-Out Code
 			 - Others who see that commented-out code won't have the courage to delete it. They'll think it is there for a reason and is too important to delete. So commented-out code gathers like dregs at the bottom of a bad bottle of wine.
+ - ### Chapter 5: Formatting
+	 - You should take care that your code is nicely formatted. You should choose a set of simple rules that govern the format of your code, and then you should consistently apply those rules.
+		 - The functionality that you create today has a good chance of changing the next release, *but the readability of your code will have a profound effect on all the changes that will ever be made.*
+	 - Vertical Formatting
+		 - Small files are usually easier to understand than larger ones.
+			 - Stick with file length with a 500 line maximum.
+		 - Vertical Ordering
+			 - **We want function call dependencies to point in the downward direction. That is, a function that is called should be below a function that does the calling. This creates a nice flow down the source code module from high level to low level.**
+		 - Vertical Openness
+			 - Each blank line is a visual cue that identifies a new and separate concept.
+		 - Vertical Density
+			 - If openness separates concepts, then vertical density implies close association. *So lines of code that are tightly related should appear vertically dense.*
+		 - Vertical Distance
+			 - Variable Declarations
+				 - Should be declares as close to their usage as possible.
+			 - Instance Variables
+				 - Should be declared at the top of the class.
+	 - Horizontal Formatting
+		 - There should be an agreed upon limit on the maximum width of code in any given file. *Typically, a line of code, shouldn't exceed that of a regular computer monitor.*
+		 - Horizontal Openness and Density
+			 - Horizontal white space is used to associate things that are strongly related and disassociate things that are more weakly related.
+				 - Spaces between assignment operators to make a clear separation of the left and right side.
+				 - No spaces between function names and the opening parenthesis, as they are closely related.
+		 - Indentation
+			 - Highlights the hierarchy of scopes between parts of code, and it's position in that hierarchy.
