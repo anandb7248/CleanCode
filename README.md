@@ -10,6 +10,7 @@ Table of contents
    * [Chapter 3: Functions](#chapter-3-functions)
    * [Chapter 4: Comments](#chapter-4-comments)
    * [Chapter 5: Formatting](#chapter-5-formatting)
+   * [Chapter 6: Objects and Data Structures](#chapter-6-objects-and-data-structures)
 <!--te-->
 
  - ### Chapter 1: Clean Code
@@ -122,3 +123,26 @@ Table of contents
 				 - No spaces between function names and the opening parenthesis, as they are closely related.
 		 - Indentation
 			 - Highlights the hierarchy of scopes between parts of code, and it's position in that hierarchy.
+ - ### Chapter 6: Objects and Data Structures
+	 - A class should not simply push its variables out through getters and setters. Rather it exposes abstract interfaces that allow its users to manipulate the *essence* of the data, without having to know its implementation.
+	 - **Objects vs Data Structures**
+		 - Objects and Data Structures are direct opposites. What's hard for Objects to do are easy for Data Structures and vice versa. *Hybrid structures are half objects and half data structures. they bring in the worst of both worlds, and indicative of muddled design. Avoid hybrid structures.*
+		 - Objects:
+			 - Hide their data behind abstractions and expose functions that operate on that data.
+			 - Makes it easy to add new classes without changing existing functions.
+			 - More appropriate when we want to add new types rather than new functions.
+		 - Data Structures:
+			 - Expose their data and have no meaningful functions.
+			 - Makes it easy to add new functions without changing existing data structures.
+			 - More appropriate when we want to add new functions as opposed to data types.
+	 - **Law of Demeter**: A module should not know about the innards of the *objects* it manipulates. Objects should not expose its internal structure through accessors.
+		 - Example of law violation (called *train wreck*):
+			 - final String outpurDir = ctxt.getOptions().getScratchDir().getAbsolutePath();
+	 - **Data Transfer Objects**
+		 - Class with public variables and no functions.
+		 - Useful structures, especially when communicating with databases or parsing mesages from sockets and so on. They often become the first in a series of translation stages that convert raw data in a database into objects in the application code.
+		 - *bean form* - private variables manipulated by getters and setters.
+		 - Active Record
+			 - Special form of Data Transfer Objects.
+			 - Data structures with public variables, but typically have navigational methods like save and find.
+			 - Typically these Active Records are direct translations from database tables, or other data sources.
